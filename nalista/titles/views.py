@@ -48,4 +48,4 @@ def get_title_info(request):
     title = title_svc.get_title_info(
         json.loads(request.body.decode())
     )
-    return title
+    return JsonResponse(title)

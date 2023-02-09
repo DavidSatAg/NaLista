@@ -1,23 +1,24 @@
 <template>
   <div>
-    <v-btn text @click.stop="dialog = true" @click="getTitleInfo(title.id)">Saiba mais</v-btn>
+    <v-btn text @click.stop="dialog = true" @click="getTitle(title.id)">Saiba mais</v-btn>
     <v-dialog v-model="dialog" max-width="600px">
       <v-card
         class="mx-auto"
+        min-width="450px"
         max-width="500px"
       >
       <v-img
-        :src="title.image"
+        :src="titleInfo.poster_image"
         class="white--text align-end"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       >
       </v-img>
     <v-card-title>
-      <h2>{{ title.title }}</h2>
+      <h2>{{ titleInfo.title }}</h2>
     </v-card-title>
     <v-spacer></v-spacer>
     <v-card-subtitle>
-      {{ title.description }}
+      {{ titleInfo.stars }}
     </v-card-subtitle>
     <div class="pl-4">
       <span class="grey--text text--lighten-2 text-caption mr-2 align-center">
@@ -86,11 +87,11 @@ export default {
     }
     },
     methods: {
-    async getTitleInfo(id) {
+    async getTitle(id) {
         console.log('alo ' + id)
         const data = await apijs.getTitleInfo(id)
-        this.titleInfo = data.titles
-        this.rating = this.titleInfo.imDbRating
+        this.titleInfo = data.data
+        this.rating = this.titleInfo.rating
         this.ratingStars = this.rating / 2
     },
   },

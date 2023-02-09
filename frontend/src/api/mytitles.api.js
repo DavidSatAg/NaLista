@@ -28,7 +28,7 @@ export default {
     getTitleInfo: (id) => {
       return new Promise((resolve, reject) => {
         api
-          .get("/api/titles/getinfo", {id})
+          .post("/api/titles/getinfo", {id})
           .then((response) => {
             return resolve(response)
           })

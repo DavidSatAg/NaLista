@@ -20,7 +20,8 @@ class Title(models.Model):
             'type': self.type,
             'poster_image': self.poster_image,
             'rating': self.rating,
-            'images': self.stars,
+            'images': self.images,
+            'stars': self.stars,
             'genres': self.genres,
             'plot': self.plot
         }
