@@ -3,14 +3,18 @@
     <v-app-bar-title class="title"><h1>{{ title }}</h1></v-app-bar-title>
     <template #append>
       <v-btn icon :to="{ name: 'mytitles-list' }">
-        <v-icon color="grey-lighten-1">
+        <v-badge :content="titleCounter.count" color="red">
+          <v-icon color="grey-lighten-1">
           mdi-playlist-edit
         </v-icon>
         <v-tooltip
         activator="parent"
         location="bottom"
         >Minha lista</v-tooltip>
+      </v-badge>
+
       </v-btn>
+
       <v-btn icon :to="{ name: 'titles-list' }">
         <v-icon color="grey-lighten-1">
           mdi-home-account
@@ -49,6 +53,8 @@
 </template>
 
 <script>
+import { useTitleCounter } from "@/stores/mytitlesStore"
+
 export default {
   props: {
     title: {
@@ -63,6 +69,10 @@ export default {
     },
   },
   emits: ["themeClick"],
+  setup() {
+    const titleCounter = useTitleCounter()
+    return {titleCounter}
+  },
   data: () => {
     return {}
   },

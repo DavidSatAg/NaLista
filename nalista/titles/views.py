@@ -49,3 +49,7 @@ def get_title_info(request):
         json.loads(request.body.decode())
     )
     return JsonResponse(title)
+
+def get_number_of_titles(request):
+    number_of_titles = title_svc.get_number_of_titles()
+    return JsonResponse(({"number_of_titles": number_of_titles}))

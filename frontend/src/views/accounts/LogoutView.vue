@@ -48,7 +48,7 @@ export default {
       AccountsApi.logout()
         .then(() => {
           this.accountsStore.clearLoggedUser()
-          this.appStore.showSnackbar("Sessão encerrada!", "warning")
+          // this.appStore.showSnackbar("Sessão encerrada!", "warning")
           this.$router.push({ name: "base-home" })
         })
         .finally(() => {

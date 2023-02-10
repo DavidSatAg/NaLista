@@ -11,9 +11,14 @@
       v-model="titlesearch"
       placeholder="Digite aqui o nome de um título"></v-text-field>
       <v-container fluid>
-        <v-row dense>
+        <div v-if="titleList.length == 0" class="d-flex-column text-center">
+          <v-icon class="mx-auto mt-16" style="font-size: 300px; color: gray">mdi-camera</v-icon>
+          <h1 style="color: gray; text-align: center">Procure filmes e séries</h1>
+        </div>
+        <div v-else>
+          <v-row dense>
           <v-col
-            v-for="title in titlelist"
+            v-for="title in titleList"
             :key="title.id"
             :cols="4"
           >
@@ -50,6 +55,8 @@
             </v-card>
           </v-col>
         </v-row>
+        </div>
+        
       </v-container>
     </div>
   </template>
@@ -60,18 +67,24 @@
     import {apijs} from '@/api/titles.api-fk.js'
     import Modal from '@/components/TitleModal.vue'
     import TitlesApi from "@/api/titles.api.js"
+    import { useTitleCounter } from "@/stores/mytitlesStore"
     export default {
         components: {
           Modal
         },
+        setup() {
+          const titleCounter = useTitleCounter()
+          return {titleCounter}
+        },
         data: () => ({
           imdbtitle: null,
           titlesearch: null,
-          titlelist: [],
+          titleList: [],
           titleLoading: false,
           bookmarkSelected: false,
           userTitleList: [],
-          titleSelected: null
+          titleSelected: null,
+          search: false,
         //   cards: [
         //   { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 4 },
         //   { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 4 },
@@ -82,6 +95,8 @@
           titlesearch() {
             if (this.titlesearch) {
               this.searchImdbTitles()
+            } else {
+              this.titleList = []
             }
           },
           // imdbtitle() {
@@ -90,11 +105,14 @@
           //   }
           // }
         },
+        mounted() {
+          this.titleCounter.secondTitleCounter()
+        },
         methods: {
           searchImdbTitles: debouncedecorator(async function() {
             this.titleLoading = true
             const data = await apijs.search_titles(this.titlesearch)
-            this.titlelist = data.results
+            this.titleList = data.results
             this.titleLoading = false
             }, 500),
           async addTitle(id) {
@@ -113,9 +131,13 @@
               this.titleSelected.genres,
               this.titleSelected.plot
               )
+            this.recarrega()
               // .then((title) => {
               //   this.appStore.showSnackbar(`Novo título adicionado #${title.id}`)
               // })
+          },
+          recarrega() {
+            this.titleCounter.secondTitleCounter()
           }
          },
     }

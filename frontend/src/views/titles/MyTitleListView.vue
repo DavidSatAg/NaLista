@@ -43,44 +43,55 @@
   import api from '@/api/mytitles.api.js'
   import Modal from '@/components/MyTitleModal.vue'
   // import TitlesApi from "@/api/titles.api.js"
+  // import Counter from '@/components/Counter.vue'
+  // import { useCounterStore } from '@/stores/mytitlesStore'
+
+  // const storeCounter = useCounterStore()
+  import { useTitleCounter } from "@/stores/mytitlesStore"
+
   export default {
-      components: {
-        Modal
-      },
-      data: () => ({
-        imdbtitle: null,
-        titlesearch: null,
-        titlelist: [],
-        titleLoading: false,
-        bookmarkSelected: false,
-        userTitleList: [],
-        titleSelected: null
-      }),
-      mounted() {
-        this.getTitles()
-      },
-      methods: {
-        // searchImdbTitles: debouncedecorator(async function() {
-        //   this.titleLoading = true
-        //   const data = await api.search_titles(this.titlesearch)
-        //   this.titlelist = data.results
-        //   this.titleLoading = false
-        //   }, 500),
-          async getTitles() {
-            const data = await api.getTitles()
-            this.titlelist = data.titles
-          },
-          async removeTitle(id) {
-            console.log(id)
-            const data = await api.deleteTitles(id)
-            this.getTitles()
-          },
-        },
-  }
+    components: {
+      Modal
+    },
+  setup() {
+    const titleCounter = useTitleCounter()
+    return {titleCounter}
+  },
+  data: () => ({
+    imdbtitle: null,
+    titlesearch: null,
+    titlelist: [],
+    titleLoading: false,
+    bookmarkSelected: false,
+    userTitleList: [],
+    titleSelected: null
+  }),
+  mounted() {
+    this.getTitles()
+  },
+  methods: {
+    // searchImdbTitles: debouncedecorator(async function() {
+    //   this.titleLoading = true
+    //   const data = await api.search_titles(this.titlesearch)
+    //   this.titlelist = data.results
+    //   this.titleLoading = false
+    //   }, 500),
+    async getTitles() {
+      const data = await api.getTitles()
+      this.titlelist = data.titles
+      this.titleCounter.secondTitleCounter()
+    },
+    async removeTitle(id) {
+      console.log(id)
+      const data = await api.deleteTitles(id)
+      this.getTitles()
+    },
+  },
+}
 </script>
 
 <style>
-  .card-img:hover {
-    opacity: 80%;
-  }
+.card-img:hover {
+  opacity: 80%;
+}
 </style>

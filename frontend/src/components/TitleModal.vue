@@ -4,6 +4,7 @@
       <v-dialog v-model="dialog" max-width="600px">
         <v-card
           class="mx-auto"
+          min-width="450"
           max-width="500px"
         >
         <v-img

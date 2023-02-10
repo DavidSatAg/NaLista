@@ -40,3 +40,7 @@ def delete_title(id):
 def get_title_info(id):
     title = Title.objects.filter(pk=id["id"]).first()
     return title.to_dict_json()
+
+def get_number_of_titles():
+    number_of_titles = Title.objects.count()
+    return number_of_titles

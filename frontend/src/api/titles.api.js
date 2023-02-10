@@ -42,6 +42,18 @@ export default {
         })
     })
   },
+  getNumberOfTitles() {
+    return new Promise((resolve, reject) => {
+      api
+        .get("/api/titles/titlescounter")
+        .then((response) => {
+          return resolve(response.data)
+        })
+        .catch((error) => {
+          return reject(error)
+        })
+    })
+  }
   // addNewTitle: (titleInfo) => {
   //   return new Promise((resolve, reject) => {
   //     api
