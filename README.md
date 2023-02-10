@@ -1,3 +1,19 @@
+# ***NaLista***
+![image](https://user-images.githubusercontent.com/104369965/218205246-361dbb69-2aa6-43f3-955a-5074e1452c4e.png)
+
+Já esteve em uma situação em que te indicaram uma série, mas por falta de tempo acabou dizendo, "Pô, nunca vi, mas vou colocar na lista pra assistir um dia." e depois acabou esquecendo a recomendação? É com a proposta de salvar o seu entretenimento e a sua amizade (afinal, ninguém gosta de esquecer recomendação dos amigos não é mesmo?) que a aplicação ***NaLista*** foi criada.
+Nela você pode pesquisar títulos de filmes e séries, ver informações como capa, atores, avaliação, sinopse e caso você goste pode adicionar o título à sua lista de títulos para que você tenha várias opções de entretenimento quando tiver tempo e disposição para assistir.
+NaLista é uma aplicação fullstack tendo como componentes de sua arquitetura o Django, VueJs, e Postgresql 
+https://user-images.githubusercontent.com/104369965/218207156-5599c32c-8464-4ff5-bce9-fb51e35da1a4.mp4
+
+
+
+
+
+
+
+
+
 # 1. Dev-env, super-easy mode (docker all things)
 
 Requirements:
