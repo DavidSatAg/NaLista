@@ -3,7 +3,7 @@
     <v-app-bar-title class="title"><h1>{{ title }}</h1></v-app-bar-title>
     <template #append>
       <v-btn icon :to="{ name: 'mytitles-list' }">
-        <v-badge :content="titleCounter.count" color="red">
+        <v-badge :content="contador.number_of_titles" color="red">
           <v-icon color="grey-lighten-1">
           mdi-playlist-edit
         </v-icon>
@@ -53,7 +53,9 @@
 </template>
 
 <script>
+
 import { useTitleCounter } from "@/stores/mytitlesStore"
+import { mapState } from "pinia"
 
 export default {
   props: {
@@ -75,6 +77,9 @@ export default {
   },
   data: () => {
     return {}
+  },
+  computed: {
+    ...mapState(useTitleCounter, ['contador'])
   },
   methods: {
     themeClick() {

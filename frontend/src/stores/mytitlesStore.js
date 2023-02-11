@@ -27,16 +27,20 @@ import api from "@/api/titles.api.js"
 export const useTitleCounter = defineStore("titleCounter", {
   state: () => ({
     count: 0,
+    contador: 0,
   }),
   actions: {
     // titleCounter(titlelist) {
     //   console.log('alo')
     //   this.count = titlelist.length
     // },
-    async secondTitleCounter() {
-      console.log('hello')
-      const data = await api.getNumberOfTitles()
-      this.count = data.number_of_titles
+    // async secondTitleCounter() {
+    //   console.log('hello')
+    //   const data = await api.getNumberOfTitles()
+    //   this.count = data.number_of_titles
+    // },
+    setContador(contagem) {
+      this.contador = contagem
     }
   },
 })

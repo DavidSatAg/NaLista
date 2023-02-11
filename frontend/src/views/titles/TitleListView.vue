@@ -64,10 +64,12 @@
   <script>
   
     import {debouncedecorator} from '@/helpers/debouncer.js'
-    import {apijs} from '@/api/titles.api-fk.js'
+    import {apijs} from '@/api/titles.api.js'
     import Modal from '@/components/TitleModal.vue'
     import TitlesApi from "@/api/titles.api.js"
     import { useTitleCounter } from "@/stores/mytitlesStore"
+    import { mapState } from 'pinia'
+    import api from "@/api/titles.api.js"
     export default {
         components: {
           Modal
@@ -91,6 +93,9 @@
         //   { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 4 },
         // ],
         }),
+        computed: {
+          ...mapState(useTitleCounter, ["contador"])
+        },
         watch: {
           titlesearch() {
             if (this.titlesearch) {
@@ -106,9 +111,13 @@
           // }
         },
         mounted() {
-          this.titleCounter.secondTitleCounter()
+          this.getSeries()
         },
         methods: {
+          async getSeries() {
+            const count = await api.getNumberOfTitles()
+            this.titleCounter.setContador(count)
+          },
           searchImdbTitles: debouncedecorator(async function() {
             this.titleLoading = true
             const data = await apijs.search_titles(this.titlesearch)
@@ -119,7 +128,7 @@
             const data = await apijs.get_title(id)
             this.titleSelected = data
             console.log(this.titleSelected)
-            TitlesApi.addNewTitle(
+          TitlesApi.addNewTitle(
               // this.titleSelected
               this.titleSelected.id,
               this.titleSelected.title,
@@ -131,14 +140,16 @@
               this.titleSelected.genres,
               this.titleSelected.plot
               )
-            this.recarrega()
+            const count = await api.getNumberOfTitles()
+            this.titleCounter.setContador(count)
+            // this.recarrega()
               // .then((title) => {
               //   this.appStore.showSnackbar(`Novo título adicionado #${title.id}`)
               // })
           },
-          recarrega() {
-            this.titleCounter.secondTitleCounter()
-          }
+          // recarrega() {
+          //   this.titleCounter.secondTitleCounter()
+          // }
          },
     }
   </script>

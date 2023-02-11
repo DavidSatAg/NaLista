@@ -47,7 +47,9 @@
   // import { useCounterStore } from '@/stores/mytitlesStore'
 
   // const storeCounter = useCounterStore()
+  import { mapState } from 'pinia'
   import { useTitleCounter } from "@/stores/mytitlesStore"
+  import apijs from "@/api/titles.api.js"
 
   export default {
     components: {
@@ -58,24 +60,15 @@
     return {titleCounter}
   },
   data: () => ({
-    imdbtitle: null,
-    titlesearch: null,
     titlelist: [],
-    titleLoading: false,
-    bookmarkSelected: false,
-    userTitleList: [],
-    titleSelected: null
   }),
+  computed: {
+    ...mapState(useTitleCounter, ['contador'])
+  },
   mounted() {
     this.getTitles()
   },
   methods: {
-    // searchImdbTitles: debouncedecorator(async function() {
-    //   this.titleLoading = true
-    //   const data = await api.search_titles(this.titlesearch)
-    //   this.titlelist = data.results
-    //   this.titleLoading = false
-    //   }, 500),
     async getTitles() {
       const data = await api.getTitles()
       this.titlelist = data.titles
@@ -84,6 +77,8 @@
     async removeTitle(id) {
       console.log(id)
       const data = await api.deleteTitles(id)
+      const count = await apijs.getNumberOfTitles()
+      this.titleCounter.setContador(count)
       this.getTitles()
     },
   },

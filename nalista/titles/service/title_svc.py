@@ -23,7 +23,6 @@ def add_title(
                 plot = new_plot
     )
     title.save()
-    breakpoint()
     return title.to_dict_json()
 
 

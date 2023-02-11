@@ -2,7 +2,7 @@
   <v-container class="fill-height home">
     <v-responsive class="d-flex align-center text-center fill-height">
       <div class="card mx-auto pb-6">
-        <v-img contain height="240" src="@/assets/logo.svg" />
+        <v-img contain class="pt-8" height="240" src="@/assets/logo_nalista.png" />
         <blockquote class="blockquote text-h5">
         &#8220;Vou deixar na lista, depois eu assisto&#8221;
         <footer>
