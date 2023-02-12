@@ -1,16 +1,16 @@
 import api from "./config.js"
 import apiHelpers from "./helpers.js"
-import API_KEY from "../../../.env"
+
 
 export const apijs = {
     async search_titles(searchstring) {
-        const url = `https://imdb-api.com/en/API/SearchTitle/${API_KEY}/${searchstring}`
+        const url = `https://imdb-api.com/en/API/SearchTitle/k_lfw00elr/${searchstring}`
         const result = await fetch(url)
         console.log('passei aqui')
         return await result.json()
     },
     async get_title(id) {
-        const url = `https://imdb-api.com/en/API/Title/${API_KEY}/${id}/FullActor,FullCast,Posters,Images,Ratings,Wikipedia,`
+        const url = `https://imdb-api.com/en/API/Title/k_lfw00elr/${id}/FullActor,FullCast,Posters,Images,Ratings,Wikipedia,`
         const result = await fetch(url)
         console.log('tô voando')
         return await result.json()

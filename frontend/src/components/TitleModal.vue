@@ -69,7 +69,7 @@
   
   <script>
     // import {debouncedecorator} from '@/helpers/debouncer.js'
-    import {apijs} from '@/api/titles.api.js'
+    import {apijs} from '@/api/titles.api-fk.js'
     export default {
       props: {
         'title': {

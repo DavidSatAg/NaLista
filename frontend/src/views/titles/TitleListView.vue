@@ -64,7 +64,7 @@
   <script>
   
     import {debouncedecorator} from '@/helpers/debouncer.js'
-    import {apijs} from '@/api/titles.api.js'
+    import {apijs} from '@/api/titles.api-fk.js'
     import Modal from '@/components/TitleModal.vue'
     import TitlesApi from "@/api/titles.api.js"
     import { useTitleCounter } from "@/stores/mytitlesStore"
