@@ -54,16 +54,4 @@ export default {
         })
     })
   }
-  // addNewTitle: (titleInfo) => {
-  //   return new Promise((resolve, reject) => {
-  //     api
-  //       .post("/api/titles/add", apiHelpers.dataToForm({ titleInfo }))
-  //       .then((response) => {
-  //         return resolve(response.data)
-  //       })
-  //       .catch((error) => {
-  //         return reject(error)
-  //       })
-  //   })
-  // },
 }

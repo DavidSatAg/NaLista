@@ -1,12 +1,5 @@
 <template>
     <div>
-      <!-- <v-autocomplete
-          v-model="imdbtitle"
-          :items="titlelist"
-          :loading="titleLoading"
-          item-text="title"
-          clearable
-      ></v-autocomplete> -->
       <v-text-field
       v-model="titlesearch"
       placeholder="Digite aqui o nome de um título"></v-text-field>
@@ -35,9 +28,6 @@
               <v-card-actions>
                 <Modal :title="title"></Modal>
                 <v-spacer></v-spacer>
-                <!-- <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn> -->
   
                 <v-btn icon @click="addTitle(title.id)">
                   <v-icon>mdi-bookmark</v-icon>
@@ -47,10 +37,6 @@
                   >Salvar
                   </v-tooltip>
                 </v-btn>
-  
-                <!-- <v-btn icon>
-                  <v-icon>mdi-share-variant</v-icon>
-                </v-btn> -->
               </v-card-actions>
             </v-card>
           </v-col>
@@ -87,11 +73,6 @@
           userTitleList: [],
           titleSelected: null,
           search: false,
-        //   cards: [
-        //   { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 4 },
-        //   { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 4 },
-        //   { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 4 },
-        // ],
         }),
         computed: {
           ...mapState(useTitleCounter, ["contador"])
@@ -104,11 +85,6 @@
               this.titleList = []
             }
           },
-          // imdbtitle() {
-          //   if (this.imdbtitle) {
-          //     console.log(this.imdbtitle)
-          //   }
-          // }
         },
         mounted() {
           this.getSeries()
@@ -129,7 +105,6 @@
             this.titleSelected = data
             console.log(this.titleSelected)
           TitlesApi.addNewTitle(
-              // this.titleSelected
               this.titleSelected.id,
               this.titleSelected.title,
               this.titleSelected.type,
@@ -142,14 +117,7 @@
               )
             const count = await api.getNumberOfTitles()
             this.titleCounter.setContador(count)
-            // this.recarrega()
-              // .then((title) => {
-              //   this.appStore.showSnackbar(`Novo título adicionado #${title.id}`)
-              // })
           },
-          // recarrega() {
-          //   this.titleCounter.secondTitleCounter()
-          // }
          },
     }
   </script>
