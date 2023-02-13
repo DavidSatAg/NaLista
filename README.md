@@ -13,7 +13,7 @@ NaLista é uma aplicação fullstack tendo como componentes de sua arquitetura o
 - No diretório do projeto crie um ambiente virtual. `virtualenv .venv`
 - Ative o ambiente virtual. `source .venv/bin/activate`
 - `pip install -r requirements-dev.txt`
-- `cp .env-sample > .env`
+- `cp .env-sample .env`
 - `docker compose build`
 - `docker compose up`
 
